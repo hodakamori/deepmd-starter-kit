@@ -2,7 +2,7 @@
 
 This is an unofficial starter for the DeePMD-Kit. This repository contains the following
 
-1. creation of teacher data using CP2K
+1. creation of training data using CP2K
 2. conversion of CP2K output to DeePMD raw format
 
 This script has been tested with the following

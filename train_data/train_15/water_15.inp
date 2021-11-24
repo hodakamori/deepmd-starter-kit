@@ -1,0 +1,39 @@
+@SET PRJ water_15
+&GLOBAL
+  PROJECT ${PRJ}
+  RUN_TYPE MD
+  PRINT_LEVEL LOW
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD QS
+  STRESS_TENSOR ANALYTICAL
+  @include cp2k.dft
+  &PRINT
+    &FORCES ON
+    &END FORCES
+    &STRESS_TENSOR ON
+    &END STRESS_TENSOR
+  &END PRINT
+  &PROPERTIES
+    &FIT_CHARGE ON
+      &EACH
+        MD 1
+      &END EACH
+    &END FIT_CHARGE
+  &END PROPERTIES
+  &SUBSYS
+    @include ${PRJ}.system
+    @include cp2k.kinds
+  &END SUBSYS
+&END FORCE_EVAL
+
+&MOTION
+  &MD
+    ENSEMBLE NVE
+    STEPS 100
+    TIMESTEP 0.5
+    TEMPERATURE 300.0
+  &END MD
+  @include cp2k.dump
+&END MOTION
