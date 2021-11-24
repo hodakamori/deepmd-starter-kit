@@ -1,0 +1,37 @@
+&PRINT
+  &TRAJECTORY
+    &EACH
+      MD 1
+    &END EACH
+  &END TRAJECTORY
+  &VELOCITIES 
+    &EACH
+      MD 1
+    &END EACH
+  &END VELOCITIES
+  &RESTART_HISTORY
+    &EACH
+      MD 5
+    &END EACH
+  &END RESTART_HISTORY
+  &STRUCTURE_DATA
+    &EACH
+      MD 1
+    &END EACH
+  &END STRUCTURE_DATA
+  &CELL
+    &EACH
+      MD 1
+    &END EACH
+  &END CELL
+  &FORCES
+    &EACH
+       MD 1
+    &END EACH
+  &END FORCES
+  &STRESS
+    &EACH
+       MD 1
+    &END EACH
+  &END STRESS
+&END PRINT
