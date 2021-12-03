@@ -19,6 +19,7 @@ def dump_virial(data_dir):
     stress_output = glob.glob(os.path.join(data_dir, '*.stress'))
     logger.info(f'Convert {stress_output[0]=}')
     stress = np.loadtxt(stress_output[0], skiprows=1, usecols=[2, 3, 4, 5, 6, 7, 8, 9, 10])
+    stress *= 27.21162 # convert units from a.u. to eV
     np.savetxt(os.path.join(data_dir, 'virial.raw'), stress, delimiter=' ')
     logger.info('Virial is successfully converted.')
 
@@ -36,6 +37,7 @@ def dump_force(data_dir):
     trj = np.zeros((len(u.trajectory), len(u.atoms)*3))
     for i, t in enumerate(u.trajectory):
         trj[i] = u.atoms.positions.flatten()
+    trj *= 27.21162 # convert units from a.u. to eV
     np.savetxt(os.path.join(data_dir, 'force.raw'), trj, delimiter=' ')
     logger.info('Force is successfully converted.')
 
@@ -55,7 +57,7 @@ def dump_energy(data_dir):
     energy_output = glob.glob(os.path.join(data_dir, '*.ener'))
     logger.info(f'Convert {energy_output[0]=}')
     energies = np.loadtxt(energy_output[0], skiprows=1, usecols=[2, 4])
-    total_energy = energies[:, 0] + energies[:, 1]
+    total_energy = (energies[:, 0] + energies[:, 1])*27.21162 # convert units from a.u. to eV
     np.savetxt(os.path.join(data_dir, 'energy.raw'), total_energy, delimiter=' ')
     logger.info('Energy is successfully converted.')
 
