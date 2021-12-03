@@ -139,3 +139,26 @@ cython_debug/
 
 # original script
 run.sh
+train_data/*/*.restart
+train_data/*/*.restart.*
+train_data/train_0/
+train_data/train_1/
+train_data/train_2/
+train_data/train_3/
+train_data/train_4/
+train_data/train_5/
+train_data/train_6/
+train_data/train_7/
+train_data/train_8/
+train_data/train_9/
+train_data/train_10/
+train_data/train_11/
+train_data/train_12/
+train_data/train_13/
+train_data/train_14/
+train_data/train_15/
+train_data/train_16/
+train_data/train_17/
+train_data/train_18/
+train_data/train_19/
+train_data/train_20/

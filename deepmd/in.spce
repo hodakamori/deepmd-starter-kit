@@ -1,0 +1,29 @@
+units		    real	
+atom_style	    full
+
+read_data	    water_eq.data
+
+pair_style	    lj/cut/coul/long 9.8 9.8
+kspace_style	pppm 1.0e-4
+
+pair_coeff  	1 1 0.15535 3.166
+pair_coeff  	* 2 0.0000 0.0000	
+
+bond_style	    harmonic
+angle_style	    harmonic
+dihedral_style	none
+improper_style	none
+
+bond_coeff	    1 1000.00 1.000
+angle_coeff	    1 100.0 109.47
+
+special_bonds   lj/coul 0.0 0.0 0.5
+neighbor        2.0 bin
+neigh_modify	every 1 delay 10 check yes
+fix		        2 all nvt temp 300.0 300.0 100 tchain 1
+velocity	    all create 300 432567 dist uniform
+dump            1 all atom 100 water_spce.lammpstrj
+dump_modify     1 sort id
+thermo_style    custom step temp epair emol etotal press vol density
+thermo          100
+run             5000

@@ -1,7 +1,8 @@
 from cp2k2deepmd import cp2k2deepmd
 import dpdata
+import glob
 
-cp2k2deepmd('./cp2k')
-d = dpdata.LabeledSystem('./cp2k', fmt='deepmd/raw')
-print(d)
-d.to('deepmd/npy', './cp2k', set_size=d.get_nframes())
+for output_dir in glob.glob('./train_data/*'):
+    cp2k2deepmd(output_dir)
+    d = dpdata.LabeledSystem(output_dir, fmt='deepmd/raw')
+    d.to('deepmd/npy', output_dir, set_size=d.get_nframes())

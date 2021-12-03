@@ -1,0 +1,17 @@
+units		    metal	
+atom_style	    full
+
+read_data	    water_eq.data
+
+pair_style      deepmd graph.pb
+pair_coeff      * *
+
+neighbor        2.0 bin
+neigh_modify	every 1 delay 10 check yes
+fix		        2 all nvt temp 300.0 300.0 0.1 tchain 1
+velocity	    all create 300 432567 dist uniform
+dump            1 all atom 100 water_deepmd.lammpstrj
+dump_modify     1 sort id
+thermo_style    custom step temp epair emol etotal press vol density
+thermo          100
+run             5000
